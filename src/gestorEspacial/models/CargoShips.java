@@ -4,8 +4,8 @@ public class CargoShips extends Ship {
     private int cargeCapacity;
 
 
-    public CargoShips(String name, int tripulation, int age, int cargeCapacity) {
-        super(name, tripulation, age);
+    public CargoShips(String name, int Crew, int age, int cargeCapacity) {
+        super(name, Crew, age);
 
         /**
          * Valida que entre correctamente los valores

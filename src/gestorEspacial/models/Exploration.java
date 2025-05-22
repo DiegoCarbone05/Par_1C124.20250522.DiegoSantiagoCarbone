@@ -1,10 +1,10 @@
 package gestorEspacial.models;
 
 public class Exploration extends Ship {
-    private EMision misionType;
+    private String misionType;
 
-    public Exploration(String name, int tripulation, int age, EMision misionType){
-        super(name, tripulation, age);
+    public Exploration(String name, int Crew, int age, String misionType){
+        super(name, Crew, age);
         this.misionType = misionType;
     }
 

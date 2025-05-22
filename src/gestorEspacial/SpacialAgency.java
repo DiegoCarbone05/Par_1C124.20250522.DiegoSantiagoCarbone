@@ -3,11 +3,16 @@ package gestorEspacial;
 import gestorEspacial.models.Ship;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SpacialAgency {
 
-    List<Ship> shipList = new ArrayList<Ship>();
+    List<Ship> shipList;
+
+    public SpacialAgency(){
+        shipList = new ArrayList<>();
+    }
 
 
     /**
@@ -41,8 +46,21 @@ public class SpacialAgency {
         for (Ship ship : shipList){
             ship.startExploration();
         }
+    }
 
-        
+    public void shipNameSort(){
+        shipList.sort(Ship.forName);
+        showShips();
+    }
+    public void shipYearSort(){
+        Collections.sort(shipList);
+        System.out.println("LISTA POR AÑO DECENDENTE");
+        showShips();
+
+    }
+    public void shipCrewSort(){
+        shipList.sort(Ship.forCrew);
+        showShips();
     }
 
 }

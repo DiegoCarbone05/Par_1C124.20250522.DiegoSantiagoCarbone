@@ -4,13 +4,11 @@
  */
 package gestorEspacial;
 
-import gestorEspacial.models.CargoShips;
-import gestorEspacial.models.EMision;
-import gestorEspacial.models.Exploration;
-import gestorEspacial.models.Ship;
+import gestorEspacial.models.*;
+
+import java.util.Scanner;
 
 /**
- *
  * @author diego
  */
 public class Main {
@@ -22,13 +20,88 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        Exploration exShip1 = new Exploration("Nostromo", 10, 1574, EMision.INVESTIGATION);
-        Exploration exShip2 = new Exploration("Sevastopol", 50, 1995, EMision.CONTACT);
+        Scanner sc = new Scanner(System.in);
+        int opcion;
 
-        specialAgency.addShip(exShip1);
-        specialAgency.addShip(exShip2);
-        specialAgency.showShips();
+        do {
+            System.out.println("\n--- Menú ---");
+            System.out.println("1. Agregar nave");
+            System.out.println("2. Mostrar todas las naves");
+            System.out.println("3. Iniciar misión de exploración");
+            System.out.println("4. Mostrar naves ordenadas por nombre");
+            System.out.println("5. Mostrar naves por año (descendente)");
+            System.out.println("6. Mostrar naves por tripulación (descendente)");
+            System.out.println("7. Salir");
+            System.out.print("Opción: ");
+            opcion = sc.nextInt();
+            sc.nextLine(); // limpiar
+
+            switch (opcion) {
+                case 1:
+
+
+                    System.out.println("Tipo de nave: 1. Exploración 2. Carguero 3. Crucero");
+                    int type = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Nombre: ");
+                    String nombre = sc.nextLine();
+                    System.out.print("Capacidad de tripulación: ");
+                    int crew = sc.nextInt();
+                    System.out.print("Año de lanzamiento: ");
+                    int year = sc.nextInt();
+
+                    switch (type) {
+                        case 1:
+                            sc.nextLine(); // limpiar
+                            System.out.print("Tipo de misión (CARTOGRAFIA, INVESTIGACION, CONTACTO): ");
+                            String mision = sc.nextLine();
+                            specialAgency.addShip(new Exploration(nombre, crew, year, mision));
+                            break;
+                        case 2:
+                            System.out.print("Capacidad de carga (100-500): ");
+                            int carge = sc.nextInt();
+                            if (carge > 100 && carge < 500){
+                                specialAgency.addShip(new CargoShips(nombre, crew, year, carge));
+                                break;
+                            }else {
+                                System.out.print("!! Ha excedido la capcidad de carga !!  (Ingrese una cantidad valida): ");
+                            }
+                        case 3:
+                            System.out.print("Cantidad de pasajeros: ");
+                            int passangers = sc.nextInt();
+                            specialAgency.addShip(new Cruises(nombre, crew, year, passangers));
+                            break;
+                        default:
+                            System.out.println("Tipo inválido.");
+                    }
+                    break;
+
+                case 2:
+                    specialAgency.showShips();
+                    break;
+                case 3:
+                    specialAgency.startExploration();
+                    break;
+                case 4:
+                    specialAgency.shipNameSort();
+                    break;
+                case 5:
+                    specialAgency.shipYearSort();
+                    break;
+                case 6:
+                    specialAgency.shipCrewSort();
+                    break;
+                case 7:
+                    System.out.println("¡Saliendo del sistema!");
+                    break;
+                default:
+                    System.out.println("Opción inválida.");
+            }
+
+        } while (opcion != 7);
+
+        sc.close();
 
     }
-    
+
 }
