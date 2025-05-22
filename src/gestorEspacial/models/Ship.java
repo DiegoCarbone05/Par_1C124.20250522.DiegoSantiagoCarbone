@@ -1,6 +1,6 @@
 package gestorEspacial.models;
 
-public class Ship {
+public abstract class Ship implements Comparable<Ship> {
 
     private String name;
     private int capTripulation;
@@ -17,13 +17,16 @@ public class Ship {
     }
 
     public void showInfo(){
-        System.out.println("");
+        System.out.println("\n");
         System.out.println("*************************************");
         System.out.println("Nombre: "+ this.name);
         System.out.println("Capacidad de tripulacion: "+ this.capTripulation);
         System.out.println("Año de lanzamiento: "+ this.year);
-        System.out.println("*************************************");
 
     }
 
+    @Override
+    public int compareTo(Ship o) {
+        return 0;
+    }
 }

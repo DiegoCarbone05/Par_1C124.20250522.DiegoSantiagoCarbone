@@ -1,11 +1,16 @@
 package gestorEspacial.models;
 
 public class CargoShips extends Ship {
-    private EMision misionType;
+    private int cargeCapacity;
 
-    public CargoShips(String name, int tripulation, int age, EMision misionType){
+
+    public CargoShips(String name, int tripulation, int age, int cargeCapacity) {
         super(name, tripulation, age);
-        this.misionType = misionType;
+
+        /**
+         * Valida que entre correctamente los valores
+         */
+        this.cargeCapacity = Math.max(100, Math.min(cargeCapacity, 500));
     }
 
     @Override
@@ -16,5 +21,6 @@ public class CargoShips extends Ship {
     @Override
     public void showInfo() {
         super.showInfo();
+        System.out.println("Capacity: " + this.cargeCapacity);
     }
 }
